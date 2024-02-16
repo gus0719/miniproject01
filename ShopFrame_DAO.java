@@ -4,64 +4,9 @@ public class ShopFrame_DAO{
 	UserAPI api = new UserAPI();
 	Scanner scan = new Scanner(System.in);
 	ShopFrame_DB shopDB = new ShopFrame_DB();
+	ShopFrame_DTOSet set = new ShopFrame_DTOSet();
 	
-	// 정보객체 생성----------------------------------------------------------------------------------//
-	// 유저 정보 객체 생성
-	ShopFrame_UserDTO[] userDTO = new ShopFrame_UserDTO[shopDB.userDB.length];
-	ShopFrame_UserDTO[] userSet() {	// 사용자들 끌어오기
-		String id;
-		String pwd;
-		for(int idx = 0; idx < shopDB.userDB.length; idx++) {
-			id = shopDB.userDB[idx][0];
-			pwd = shopDB.userDB[idx][1];
-			userDTO[idx] = new ShopFrame_UserDTO(id, pwd);
-		}
-		return userDTO;
-	}
 	
-	// 상품정보 객체 생성	
-	ShopFrame_ShopCategoryDTO[] productDTO;
-	ShopFrame_ShopCategoryDTO[] productSet(String[][] productArr) {	// DB에서 받은 배열별로 상품 끌어오기
-		String category;
-		String brand;
-		String productName;
-		String uploadDate;
-		String explain;
-		int price;
-		int pdCnt;
-		int viewCnt;
-		for(int idx = 0; idx < productArr.length; idx++){
-			category = productArr[idx][0];
-			brand = productArr[idx][1];
-			productName = productArr[idx][2];
-			uploadDate = productArr[idx][3];
-			explain = productArr[idx][4];
-			price = Integer.parseInt(productArr[idx][5]);
-			pdCnt = Integer.parseInt(productArr[idx][6]);
-			viewCnt = Integer.parseInt(productArr[idx][7]);
-			productDTO[idx] = new ShopFrame_ShopCategoryDTO(category, brand, productName, uploadDate, explain, price, pdCnt, viewCnt);
-		}
-		return productDTO;
-	}
-	
-	// 상품 리뷰 객체 생성
-	ShopFrame_ReviewProductDTO[] reviewDTO = new ShopFrame_ReviewProductDTO[shopDB.pdReviewDB.length];
-	ShopFrame_ReviewProductDTO[] reviewSet() {	// DB에 있는 상품들의 리뷰
-		String pdName;
-		String user;
-		String userWrite;
-		String writeDate;
-		int starGrade;
-		for(int idx = 0; idx < shopDB.pdReviewDB.length; idx++) {
-			pdName = shopDB.pdReviewDB[idx][0];
-			user = shopDB.pdReviewDB[idx][1];
-			userWrite = shopDB.pdReviewDB[idx][2];
-			writeDate = shopDB.pdReviewDB[idx][3];
-			starGrade = Integer.parseInt(shopDB.pdReviewDB[idx][4]);
-			reviewDTO[idx] = new ShopFrame_ReviewProductDTO(pdName, user, userWrite, writeDate, starGrade);
-		}
-		return reviewDTO;
-	}
 	/* 정보객체 생성----------------------------------------------------------------------------------/
 	/----------------------------------------단계별 메소드 생성*/
 	void printCategory() {
@@ -92,23 +37,23 @@ public class ShopFrame_DAO{
 				// 카테고리 상품메뉴로 이동
 				switch(Integer.parseInt(categoryRead)){
 					case 1:	// 가구
-						productDTO = new ShopFrame_ShopCategoryDTO[shopDB.funitureDB.length];	// productDTO 객체를 funitureDB의 길이만큼 생성
-						ShopFrame_ShopCategoryDTO[] funitureDTO = productSet(shopDB.funitureDB);
+						set.productDTO = new ShopFrame_ShopCategoryDTO[shopDB.funitureDB.length];	// productDTO 객체를 funitureDB의 길이만큼 생성
+						ShopFrame_ShopCategoryDTO[] funitureDTO = set.productSet(shopDB.funitureDB);
 						printProduct(funitureDTO);
 						break;	//예외발생
 					case 2:	// 가전디지털
-						productDTO = new ShopFrame_ShopCategoryDTO[shopDB.digitalDB.length];	// productDTO 객체를 digitalDB의 길이만큼 생성
-						ShopFrame_ShopCategoryDTO[] digitalDTO = productSet(shopDB.digitalDB);
+						set.productDTO = new ShopFrame_ShopCategoryDTO[shopDB.digitalDB.length];	// productDTO 객체를 digitalDB의 길이만큼 생성
+						ShopFrame_ShopCategoryDTO[] digitalDTO = set.productSet(shopDB.digitalDB);
 						printProduct(digitalDTO);
 						break;
 					case 3:	// 식품
-						productDTO = new ShopFrame_ShopCategoryDTO[shopDB.foodDB.length];	// productDTO 객체를 foodDB의 길이만큼 생성
-						ShopFrame_ShopCategoryDTO[] foodDTO = productSet(shopDB.foodDB);
+						set.productDTO = new ShopFrame_ShopCategoryDTO[shopDB.foodDB.length];	// productDTO 객체를 foodDB의 길이만큼 생성
+						ShopFrame_ShopCategoryDTO[] foodDTO = set.productSet(shopDB.foodDB);
 						printProduct(foodDTO);
 						break;
 					case 4:	// 패션
-						productDTO = new ShopFrame_ShopCategoryDTO[shopDB.fashionDB.length];	// productDTO 객체를 fashionDB의 길이만큼 생성
-						ShopFrame_ShopCategoryDTO[] fashionDTO = productSet(shopDB.fashionDB);
+						set.productDTO = new ShopFrame_ShopCategoryDTO[shopDB.fashionDB.length];	// productDTO 객체를 fashionDB의 길이만큼 생성
+						ShopFrame_ShopCategoryDTO[] fashionDTO = set.productSet(shopDB.fashionDB);
 						printProduct(fashionDTO);
 						break;
 				}
