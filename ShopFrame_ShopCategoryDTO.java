@@ -40,11 +40,11 @@ public class ShopFrame_ShopCategoryDTO{
 		this.brand = brand;
 	}
 	//productName getter
-	public String getproductName(){
+	public String getProductName(){
 		return productName;
 	}
 	//productName setter
-	public void setproductName(String productName){
+	public void setProductName(String productName){
 		this.productName = productName;
 	}
 	//uploadDate getter
@@ -52,7 +52,7 @@ public class ShopFrame_ShopCategoryDTO{
 		return uploadDate;
 	}
 	//uploadDate setter
-	public void setuploadDate(String uploadDate){
+	public void setUploadDate(String uploadDate){
 		this.uploadDate = uploadDate;
 	}
 	//explain getter
@@ -72,19 +72,19 @@ public class ShopFrame_ShopCategoryDTO{
 		this.price = price;
 	}
 	//pdCnt getter
-	public int getpdCnt(){
+	public int getPdCnt(){
 		return pdCnt;
 	}
 	//pdCnt setter
-	public void setpdCnt(int pdCnt){
+	public void setPdCnt(int pdCnt){
 		this.pdCnt = pdCnt;
 	}
 	//viewCnt getter
-	public int getviewCnt(){
+	public int getViewCnt(){
 		return viewCnt;
 	}
 	//viewCnt setter
-	public void setviewCnt(int viewCnt){
+	public void setViewCnt(int viewCnt){
 		this.viewCnt = viewCnt;
 	}	
 }

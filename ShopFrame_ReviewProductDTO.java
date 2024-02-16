@@ -19,11 +19,11 @@ public class ShopFrame_ReviewProductDTO{
 	}
 
 	//pdName getter
-	public String getpdName(){
+	public String getPdName(){
 		return pdName;
 	}
 	//pdName setter
-	public void setpdName(String pdName){
+	public void setPdName(String pdName){
 		this.pdName = pdName;
 	}
 
@@ -37,29 +37,29 @@ public class ShopFrame_ReviewProductDTO{
 	}
 
 	//userWrite getter
-	public String getuserWrite(){
+	public String getUserWrite(){
 		return userWrite;
 	}
 	//userWrite setter
-	public void setuserWrite(String userWrite){
+	public void setUserWrite(String userWrite){
 		this.userWrite = userWrite;
 	}
 
 	//writeDate getter
-	public String getwriteDate(){
+	public String getWriteDate(){
 		return writeDate;
 	}
 	//writeDate setter
-	public void setwriteDate(String writeDate){
+	public void setWriteDate(String writeDate){
 		this.writeDate = writeDate;
 	}
 
 	//starGrade getter
-	public int getstarGrade(){
+	public int getStarGrade(){
 		return starGrade;
 	}
 	//starGrade setter
-	public void setstarGrade(int starGrade){
+	public void setStarGrade(int starGrade){
 		this.starGrade = starGrade;
 	}
 }
