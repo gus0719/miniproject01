@@ -116,7 +116,7 @@ public class ShopFrame_DAO{
 		// 상품명, 상품설명
 		api.mLine('-',80);
 		System.out.printf("브랜드 : %s\n", productDTOobj.getBrand());
-		System.out.printf("상품명 : %s\n", productDTOobj.getproductName());
+		System.out.printf("상품명 : %s\n", productDTOobj.getProductName());
 		System.out.printf("등록 일자 : %s\n", productDTOobj.getUploadDate());
 		System.out.printf("상품 설명\n%s\n", productDTOobj.getExplain());
 		api.mLine('-',80);
@@ -139,7 +139,7 @@ public class ShopFrame_DAO{
 			for(int idx = 0; idx < productDTOobj.length; idx++) { // 카테고리별로 상품을 출력하는 알고리즘
 				System.out.print(idx+1+". ->");
 				System.out.printf("\t브랜드 : %s\n", productDTOobj[idx].getBrand());
-				System.out.printf("\t상품명 : %s\n", productDTOobj[idx].getproductName());
+				System.out.printf("\t상품명 : %s\n", productDTOobj[idx].getProductName());
 				System.out.printf("\t가격 : %,10d\n\n", productDTOobj[idx].getPrice());
 			}	// 예외발생
 			System.out.println("\n\tQ. <- 카테고리 이동");
