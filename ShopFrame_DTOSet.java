@@ -1,19 +1,29 @@
 package classes;
 
+import java.util.Scanner;
 public class ShopFrame_DTOSet {
 	ShopFrame_DB shopDB = new ShopFrame_DB();
+	Scanner scan = new Scanner(System.in);
 	// 정보객체
 	// 생성----------------------------------------------------------------------------------//
 	// 유저 정보 객체 생성
-	ShopFrame_UserDTO[] userDTO = new ShopFrame_UserDTO[shopDB.userDB.length];
+	ShopFrame_UserDTO[] userDTO = new ShopFrame_SignUpDTO[shopDB.userDB.length];
+	// 회원가입한 정보에서 id와 pwd를 사용하기 위함
 
+	// 회원가입 구현하기 전 로그인 테스트
 	ShopFrame_UserDTO[] userSet() { // 사용자들 끌어오기
 		String id;
 		String pwd;
+		String name;
+		String phoneNo;
+		String address;
 		for (int idx = 0; idx < shopDB.userDB.length; idx++) {
 			id = shopDB.userDB[idx][0];
 			pwd = shopDB.userDB[idx][1];
-			userDTO[idx] = new ShopFrame_UserDTO(id, pwd);
+			name = shopDB.userDB[idx][2];
+			phoneNo = shopDB.userDB[idx][3];
+			address = shopDB.userDB[idx][4];
+			userDTO[idx] = new ShopFrame_SignUpDTO(id, pwd, name, phoneNo, address);
 		}
 		return userDTO;
 	}

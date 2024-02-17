@@ -9,6 +9,7 @@ public class ShopFrame_UserDTO{
 		this.id = id;
 		this.pwd = pwd;
 	}
+	
 	public String getId(){
 		return id;
 	}
