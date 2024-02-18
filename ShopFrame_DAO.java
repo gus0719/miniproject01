@@ -90,9 +90,17 @@ public class ShopFrame_DAO{
 			if(Integer.parseInt(explainRead) >= 1 && Integer.parseInt(explainRead) <= 3) {
 				switch(Integer.parseInt(explainRead)) {
 					case 1:
+						if(ShopFrame_Login.loginToken.equals("")){
+							System.out.println("로그인 후 구매가 가능합니다.");
+							continue;
+						}
 						System.out.println("\t\t^구매 Algorithm");
 						break;
 					case 2:
+						if(ShopFrame_Login.loginToken.equals("")){
+							System.out.println("로그인 후 담아주세요.");
+							continue;
+						}
 						System.out.println("\t\t^ 장바구니 Algorithm");
 						break;
 					case 3:
@@ -149,8 +157,9 @@ public class ShopFrame_DAO{
 		System.out.print("메뉴를 선택하세요 [종료 : EXIT] : ");
 	}
 	void shopRun() { // 쇼핑몰 실행
-		System.out.printf("%1$s\n\t6조 쇼핑몰 프로젝트\t\n%1$s\n", api.mLineReturn('=', 31));
 		while(true) {
+			String user = (ShopFrame_Login.loginToken.equals("")) ? "" : ShopFrame_Login.loginToken + "님 환영합니다.";
+			System.out.printf("%1$s\n\t6조 쇼핑몰 프로젝트\t\t%2$s\n%1$s\n", api.mLineReturn('=', 31), user);
 			mainMenu();
 			String choiceMenu = scan.nextLine();
 			if(choiceMenu.length() == 0) {

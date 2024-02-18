@@ -1,9 +1,7 @@
 package classes;
 
-import java.util.Scanner;
 public class ShopFrame_DTOSet {
 	ShopFrame_DB shopDB = new ShopFrame_DB();
-	Scanner scan = new Scanner(System.in);
 	// 정보객체
 	// 생성----------------------------------------------------------------------------------//
 	// 유저 정보 객체 생성
@@ -18,6 +16,9 @@ public class ShopFrame_DTOSet {
 		String phoneNo;
 		String address;
 		for (int idx = 0; idx < shopDB.userDB.length; idx++) {
+			if(shopDB.userDB[idx][0].equals(null)){
+				break;
+			}	// 회원가입한 유저만큼 유저 정보객체 생성
 			id = shopDB.userDB[idx][0];
 			pwd = shopDB.userDB[idx][1];
 			name = shopDB.userDB[idx][2];
@@ -49,8 +50,8 @@ public class ShopFrame_DTOSet {
 			price = Integer.parseInt(productArr[idx][5]);
 			pdCnt = Integer.parseInt(productArr[idx][6]);
 			viewCnt = Integer.parseInt(productArr[idx][7]);
-			productDTO[idx] = new ShopFrame_ShopCategoryDTO(category, brand, productName, uploadDate, explain, price,
-					pdCnt, viewCnt);
+			productDTO[idx] = new ShopFrame_ShopCategoryDTO(
+					category, brand, productName, uploadDate, explain, price, pdCnt, viewCnt);
 		}
 		return productDTO;
 	}
