@@ -7,7 +7,6 @@ public class ShopFrame_DAO{
 	ShopFrame_DB shopDB = new ShopFrame_DB();
 	ShopFrame_DTOSet set = new ShopFrame_DTOSet();
 	ShopFrame_Login loginObj = new ShopFrame_Login();
-	ShopFrame_MyCart cartObj = new ShopFrame_MyCart();
 	
 	/* 정보객체 생성----------------------------------------------------------------------------------/
 	/----------------------------------------단계별 메소드 생성*/
@@ -213,8 +212,6 @@ public class ShopFrame_DAO{
 			}
 		}
 		while(true){
-			myCart[0] = "신라면 블랙 멀티팩";
-			myCart[1] = "맥북 에어 13";
 			showCart(myCart, user);
 			System.out.print("상품 번호를 선택하세요[돌아가기 : Q] : ");
 			String cartRead = scan.nextLine();
@@ -249,11 +246,10 @@ public class ShopFrame_DAO{
 		api.mLine('-', 30);
 		System.out.print("메뉴를 선택하세요 [종료 : EXIT] : ");
 	}	// mainMenu()
-	void shopRun() { // 쇼핑몰 실행
+	void shopRun() { // 쇼핑몰 실행--
 		loginObj.shopUserInit();	// 프로그램 실행 시 유저 DB 초기화
 		set.itgProduct();	// 카테고리 상품 통합메소드 호출
 		set.productSet();	// 상품 갱신
-		//System.out.println(Arrays.toString(shopDB.userCart[1]));
 		while(true) {
 			String user = (ShopFrame_Login.loginToken.equals("")) ? "" : ShopFrame_Login.loginToken + "님 환영합니다.";
 			System.out.printf("%1$s\n\t쇼핑 플렉스몰\t\t%2$s\n%1$s\n", api.mLineReturn('=', 31), user);

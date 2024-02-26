@@ -2,8 +2,6 @@ package classes;
 
 public class ShopFrame_DTOSet{
 	ShopFrame_DB shopDB = new ShopFrame_DB();
-	// 정보객체
-	// 생성----------------------------------------------------------------------------------//
 	// 유저 정보 객체 생성
 	ShopFrame_SignUpDTO[] userDTO = new ShopFrame_SignUpDTO[shopDB.userDB.length];
 	// 회원가입한 정보에서 id와 pwd를 사용하기 위함

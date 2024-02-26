@@ -1,5 +1,5 @@
 package classes;
-public class ShopFrame_ShopCategoryDTO{
+public class ShopFrame_ShopCategoryDTO{	// 카테고리 상품DTO
 	private String category;
 	private String brand;
 	private String productName;

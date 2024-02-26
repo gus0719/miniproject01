@@ -7,7 +7,7 @@ public class ShopFrame_Login {
 	static int userLen;
 	static {
 		loginToken = ""; // 실행 시 로그인 토큰 초기화
-		userLen = 1;
+		userLen = 1;	// 회원가입할때마다 1씩 증가시켜서 자리 확보
 	}
 	UserAPI api = new UserAPI();
 	Scanner scan = new Scanner(System.in);

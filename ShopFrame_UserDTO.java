@@ -1,5 +1,5 @@
 package classes;
-public class ShopFrame_UserDTO{
+public class ShopFrame_UserDTO{	// 유저DTO
 	private String id;
 	private String pwd;
 

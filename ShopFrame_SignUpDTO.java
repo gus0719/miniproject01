@@ -1,5 +1,5 @@
 package classes;
-public class ShopFrame_SignUpDTO extends ShopFrame_UserDTO{
+public class ShopFrame_SignUpDTO extends ShopFrame_UserDTO{	// 회원가입DTO. 유저DTO에게 상속받음
 	// NAME, IDENTIFY NO, ID, PWD, PHONENO, EMAIL, ADDRESS
 	private String name;
 	private String identifyNo;
