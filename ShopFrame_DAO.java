@@ -1,7 +1,7 @@
 package classes;
 
 import java.util.Scanner;
-public class ShopFrame_DAO{
+public class ShopFrame_DAO{	// 프로젝트 뼈대
 	UserAPI api = new UserAPI();
 	Scanner scan = new Scanner(System.in);
 	ShopFrame_DB shopDB = new ShopFrame_DB();

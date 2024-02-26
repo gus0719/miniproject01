@@ -1,5 +1,5 @@
 package classes;
-public class ShopFrame_ReviewProductDTO{	// 상품리뷰 DTO
+public class ShopFrame_ReviewProductDTO{
 	private String pdName;
 	private String user;
 	private String userWrite;

@@ -61,5 +61,5 @@ public class ShopFrame_DB{
 	};
 
 	String[][] userCart = new String[userDB.length][productLen];	// 유저 장바구니, 유저마다 상품 길이만큼 장바구니 생성
-	String[][] buyRecord = new String[userDB.length][productLen];
+	String[][] buyRecord = new String[userDB.length][productLen];	// 구매내역 DB
 }
