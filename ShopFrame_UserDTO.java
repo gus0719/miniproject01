@@ -4,8 +4,8 @@ public class ShopFrame_UserDTO{
 	private String pwd;
 
 	//UserDTO getter / setter / Constructor 작성
-	ShopFrame_UserDTO(){}
-	ShopFrame_UserDTO(String id, String pwd){
+	public ShopFrame_UserDTO(){}
+	public ShopFrame_UserDTO(String id, String pwd){
 		this.id = id;
 		this.pwd = pwd;
 	}

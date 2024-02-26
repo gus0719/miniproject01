@@ -1,38 +1,40 @@
 package classes;
 
-public class ShopFrame_DTOSet {
+public class ShopFrame_DTOSet{
 	ShopFrame_DB shopDB = new ShopFrame_DB();
 	// 정보객체
 	// 생성----------------------------------------------------------------------------------//
 	// 유저 정보 객체 생성
-	ShopFrame_UserDTO[] userDTO = new ShopFrame_SignUpDTO[shopDB.userDB.length];
+	ShopFrame_SignUpDTO[] userDTO = new ShopFrame_SignUpDTO[shopDB.userDB.length];
 	// 회원가입한 정보에서 id와 pwd를 사용하기 위함
 
 	// 회원가입 구현하기 전 로그인 테스트
-	ShopFrame_UserDTO[] userSet() { // 사용자들 끌어오기
+	ShopFrame_SignUpDTO[] userSet(String[][] userDB) { // 사용자들 끌어오기
+		String name;
+		String identify;
 		String id;
 		String pwd;
-		String name;
 		String phoneNo;
+		String email;
 		String address;
-		for (int idx = 0; idx < shopDB.userDB.length; idx++) {
-			if(shopDB.userDB[idx][0].equals(null)){
-				break;
-			}	// 회원가입한 유저만큼 유저 정보객체 생성
-			id = shopDB.userDB[idx][0];
-			pwd = shopDB.userDB[idx][1];
-			name = shopDB.userDB[idx][2];
-			phoneNo = shopDB.userDB[idx][3];
-			address = shopDB.userDB[idx][4];
-			userDTO[idx] = new ShopFrame_SignUpDTO(id, pwd, name, phoneNo, address);
+		String[] cart;
+		for (int idx = 0; idx < userDB.length; idx++) {
+			name = userDB[idx][0];
+			identify = userDB[idx][1];
+			id = userDB[idx][2];
+			pwd = userDB[idx][3];
+			phoneNo = userDB[idx][4];
+			email = userDB[idx][5];
+			address = userDB[idx][6];
+			cart = shopDB.userCart[idx];
+			userDTO[idx] = new ShopFrame_SignUpDTO(name, identify, id, pwd, phoneNo, email, address, cart);
 		}
 		return userDTO;
 	}
 
 	// 상품정보 객체 생성
-	ShopFrame_ShopCategoryDTO[] productDTO;
-
-	ShopFrame_ShopCategoryDTO[] productSet(String[][] productArr) { // DB에서 받은 배열별로 상품 끌어오기
+	ShopFrame_ShopCategoryDTO[] productDTO = new ShopFrame_ShopCategoryDTO[shopDB.productLen];	// 카테고리 통합 상품 DB 정보 객체배열 생성
+	ShopFrame_ShopCategoryDTO[] productSet() { // DB에서 받은 배열별로 상품 끌어오기
 		String category;
 		String brand;
 		String productName;
@@ -41,21 +43,39 @@ public class ShopFrame_DTOSet {
 		int price;
 		int pdCnt;
 		int viewCnt;
-		for (int idx = 0; idx < productArr.length; idx++) {
-			category = productArr[idx][0];
-			brand = productArr[idx][1];
-			productName = productArr[idx][2];
-			uploadDate = productArr[idx][3];
-			explain = productArr[idx][4];
-			price = Integer.parseInt(productArr[idx][5]);
-			pdCnt = Integer.parseInt(productArr[idx][6]);
-			viewCnt = Integer.parseInt(productArr[idx][7]);
+		for (int idx = 0; idx < shopDB.productDB.length; idx++) {
+			category = shopDB.productDB[idx][0];
+			brand = shopDB.productDB[idx][1];
+			productName = shopDB.productDB[idx][2];
+			uploadDate = shopDB.productDB[idx][3];
+			explain = shopDB.productDB[idx][4];
+			price = Integer.parseInt(shopDB.productDB[idx][5]);
+			pdCnt = Integer.parseInt(shopDB.productDB[idx][6]);
+			viewCnt = Integer.parseInt(shopDB.productDB[idx][7]);
 			productDTO[idx] = new ShopFrame_ShopCategoryDTO(
 					category, brand, productName, uploadDate, explain, price, pdCnt, viewCnt);
 		}
 		return productDTO;
 	}
-
+	void itgProduct() {	// 카테고리 상품 통합 DB
+		int cnt = 0;
+		for(int i = 0; i < shopDB.funitureDB.length; i++) {
+			shopDB.productDB[cnt] = shopDB.funitureDB[i];
+			cnt++;
+		}
+		for(int i = 0; i < shopDB.digitalDB.length; i++) {
+			shopDB.productDB[cnt] = shopDB.digitalDB[i];
+			cnt++;
+		}
+		for(int i = 0; i < shopDB.foodDB.length; i++) {
+			shopDB.productDB[cnt] = shopDB.foodDB[i];
+			cnt++;
+		}
+		for(int i = 0; i < shopDB.fashionDB.length; i++) {
+			shopDB.productDB[cnt] = shopDB.fashionDB[i];
+			cnt++;
+		}
+	}
 	// 상품 리뷰 객체 생성
 	ShopFrame_ReviewProductDTO[] reviewDTO = new ShopFrame_ReviewProductDTO[shopDB.pdReviewDB.length];
 

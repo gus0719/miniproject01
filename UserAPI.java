@@ -1,5 +1,5 @@
 package classes;
-class UserAPI{
+public class UserAPI{
 	void mLine(char mark, int length){
 		for(int repeat = 0; repeat < length; repeat++){
 			System.out.print(mark);
