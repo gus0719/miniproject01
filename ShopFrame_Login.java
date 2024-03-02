@@ -22,17 +22,6 @@ public class ShopFrame_Login {
 			}
 		}
 	}
-	/*
-	void showUsers() { // 유저 리스트 출력(테스트용)
-		for (int i = 0; i < shopDB.userDB.length; i++) {
-			for (int j = 0; j < shopDB.userDB[i].length; j++) {
-				System.out.print(shopDB.userDB[i][j] + " ");
-			}
-			System.out.println();
-		}
-	}
-	*/	// 회원가입 테스트용
-	
 	// 회원가입 Algorithm
 	void signUp() { // 회원가입 구현
 		String read;
@@ -127,7 +116,7 @@ public class ShopFrame_Login {
 		String inputPwd = scan.nextLine();
 		System.out.println();
 		boolean idFlag = false;
-		if(shopDB.userDB[0][0].equals("")) {
+		if(set.userDTO[0].getId().equals("")) {
 			System.out.println("고객DB에 정보 없음");
 			return;
 		}

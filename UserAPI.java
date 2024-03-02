@@ -7,10 +7,10 @@ public class UserAPI{
 		System.out.println();
 	}
 	String mLineReturn(char mark, int length){
-		String markLine = "";
+		String line = "";
 		for(int repeat = 0; repeat < length; repeat++){
-			markLine += mark;
+			line += mark;
 		}
-		return markLine;
+		return line;
 	}
 }

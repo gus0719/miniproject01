@@ -1,6 +1,8 @@
 package classes;
 
 import java.util.Scanner;
+import java.util.Arrays;
+
 public class ShopFrame_DAO{	// 프로젝트 뼈대
 	UserAPI api = new UserAPI();
 	Scanner scan = new Scanner(System.in);
@@ -144,14 +146,13 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 							System.out.println("로그인 후 구매가 가능합니다.");
 							continue;
 						}
-						System.out.println("\t\t^구매 Algorithm");
 						break;
 					case 2:
 						if(ShopFrame_Login.loginToken.equals("")){
 							System.out.println("로그인 후 담아주세요.");
 							continue;
-						}else{
-							
+						}else{	// 장바구니 알고리즘
+							takeIt(productDTOobj);
 						}
 						break;
 					case 3:
@@ -185,34 +186,53 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 		System.out.printf("%s\n", api.mLineReturn('=', 40));
 		System.out.printf("\t%s의 장바구니\n", user);
 		System.out.printf("%s\n", api.mLineReturn('=', 40));
+		int pIdx = 1;
 		label : for(int i = 0; i < cart.length; i++){
 			if(cart[i] == null){	// 장바구니에 상품이 있을때까지 출력
 				break;
 			}
 			for(int j = 0; j < set.productDTO.length; j++){
 				if(cart[i].equals(set.productDTO[j].getProductName())){
-					System.out.printf("상품번호 : %d\n브랜드 : %s\n", j, set.productDTO[j].getBrand());
+					System.out.printf("%d -> 브랜드 : %s\n", pIdx, set.productDTO[j].getBrand());
 					System.out.printf("상품명 : %s\n",set.productDTO[j].getProductName());
 					System.out.printf("상품 가격 : %,d\n", set.productDTO[j].getPrice());
 					System.out.printf("%s\n", api.mLineReturn('-', 30));
+					pIdx++;
 					continue label;
 				}
 			}
 		}
 	}
-	void myCart(String user){
-		String[] myCart = new String[shopDB.userCart[0].length];
-		int uIdx = 0;
-		set.userSet(shopDB.userDB); // 유저 정보 끌어오기
-		for(int i = 0; i < set.userDTO.length; i++){	// 로그인된 계정의 장바구니
+	int getUserIdx(String user){	// 유저 카트 인덱스 추출기
+		int userIdx;
+		for(int i = 0; i < set.userDTO.length; i++){
 			if(user.equals(set.userDTO[i].getId())) {
-				myCart = set.userDTO[i].getCart();
-				uIdx = i;
+				userIdx = i;
+				return userIdx;
+			}
+		}
+		return 0;
+	}
+	void takeIt(ShopFrame_ShopCategoryDTO productObj){
+		int uIdx = getUserIdx(ShopFrame_Login.loginToken);
+		String[] myCart = set.userDTO[uIdx].getCart();
+		int cIdx = 0;
+		for(int i = 0; i < myCart.length; i++){	// 널값인 인덱스 확인용
+			if(myCart[i] == null){
+				cIdx = i;
 				break;
 			}
 		}
+		myCart[cIdx] = productObj.getProductName();
+		System.out.println(Arrays.toString(myCart));	// 장바구니 저장 테스트
+		System.out.println("장바구니에 상품이 담겼습니다.");
+		set.userDTO[uIdx].setCart(myCart);
+	}
+	void myCart(){
+		int uIdx = getUserIdx(ShopFrame_Login.loginToken);
+		String[] myCart = set.userDTO[uIdx].getCart();
 		while(true){
-			showCart(myCart, user);
+			showCart(myCart, ShopFrame_Login.loginToken);
 			System.out.print("상품 번호를 선택하세요[돌아가기 : Q] : ");
 			String cartRead = scan.nextLine();
 			if(cartRead.length() == 0) {
@@ -246,10 +266,11 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 		api.mLine('-', 30);
 		System.out.print("메뉴를 선택하세요 [종료 : EXIT] : ");
 	}	// mainMenu()
-	void shopRun() { // 쇼핑몰 실행--
+	void shopRun() { // 쇼핑몰 실행
 		loginObj.shopUserInit();	// 프로그램 실행 시 유저 DB 초기화
 		set.itgProduct();	// 카테고리 상품 통합메소드 호출
 		set.productSet();	// 상품 갱신
+		set.userSet(shopDB.userDB); // 유저 정보 끌어오기
 		while(true) {
 			String user = (ShopFrame_Login.loginToken.equals("")) ? "" : ShopFrame_Login.loginToken + "님 환영합니다.";
 			System.out.printf("%1$s\n\t쇼핑 플렉스몰\t\t%2$s\n%1$s\n", api.mLineReturn('=', 31), user);
@@ -276,7 +297,7 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 						if(ShopFrame_Login.loginToken.equals("")){
 							loginObj.login();
 						}else{
-							myCart(ShopFrame_Login.loginToken);
+							myCart();
 						}
 						break;
 					case 3:
