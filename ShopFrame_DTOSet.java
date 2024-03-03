@@ -7,7 +7,7 @@ public class ShopFrame_DTOSet{
 	// 회원가입한 정보에서 id와 pwd를 사용하기 위함
 
 	// 회원가입 구현하기 전 로그인 테스트
-	ShopFrame_SignUpDTO[] userSet(String[][] userDB) { // 사용자들 끌어오기
+	ShopFrame_SignUpDTO[] userSet(String[][] userDB){ // 사용자들 끌어오기
 		String name;
 		String identify;
 		String id;
@@ -16,7 +16,7 @@ public class ShopFrame_DTOSet{
 		String email;
 		String address;
 		String[] cart;
-		for (int idx = 0; idx < userDB.length; idx++) {
+		for(int idx = 0; idx < userDB.length; idx++){
 			name = userDB[idx][0];
 			identify = userDB[idx][1];
 			id = userDB[idx][2];
@@ -32,7 +32,7 @@ public class ShopFrame_DTOSet{
 
 	// 상품정보 객체 생성
 	ShopFrame_ShopCategoryDTO[] productDTO = new ShopFrame_ShopCategoryDTO[shopDB.productLen];	// 카테고리 통합 상품 DB 정보 객체배열 생성
-	ShopFrame_ShopCategoryDTO[] productSet() { // DB에서 받은 배열별로 상품 끌어오기
+	ShopFrame_ShopCategoryDTO[] productSet(){ // DB에서 받은 배열별로 상품 끌어오기
 		String category;
 		String brand;
 		String productName;
@@ -41,7 +41,7 @@ public class ShopFrame_DTOSet{
 		int price;
 		int pdCnt;
 		int viewCnt;
-		for (int idx = 0; idx < shopDB.productDB.length; idx++) {
+		for(int idx = 0; idx < shopDB.productDB.length; idx++){
 			category = shopDB.productDB[idx][0];
 			brand = shopDB.productDB[idx][1];
 			productName = shopDB.productDB[idx][2];
@@ -55,21 +55,21 @@ public class ShopFrame_DTOSet{
 		}
 		return productDTO;
 	}
-	void itgProduct() {	// 카테고리 상품 통합 DB
+	void itgProduct(){	// 카테고리 상품 통합 DB
 		int cnt = 0;
-		for(int i = 0; i < shopDB.funitureDB.length; i++) {
+		for(int i = 0; i < shopDB.funitureDB.length; i++){
 			shopDB.productDB[cnt] = shopDB.funitureDB[i];
 			cnt++;
 		}
-		for(int i = 0; i < shopDB.digitalDB.length; i++) {
+		for(int i = 0; i < shopDB.digitalDB.length; i++){
 			shopDB.productDB[cnt] = shopDB.digitalDB[i];
 			cnt++;
 		}
-		for(int i = 0; i < shopDB.foodDB.length; i++) {
+		for(int i = 0; i < shopDB.foodDB.length; i++){
 			shopDB.productDB[cnt] = shopDB.foodDB[i];
 			cnt++;
 		}
-		for(int i = 0; i < shopDB.fashionDB.length; i++) {
+		for(int i = 0; i < shopDB.fashionDB.length; i++){
 			shopDB.productDB[cnt] = shopDB.fashionDB[i];
 			cnt++;
 		}
@@ -77,13 +77,13 @@ public class ShopFrame_DTOSet{
 	// 상품 리뷰 객체 생성
 	ShopFrame_ReviewProductDTO[] reviewDTO = new ShopFrame_ReviewProductDTO[shopDB.pdReviewDB.length];
 
-	ShopFrame_ReviewProductDTO[] reviewSet() { // DB에 있는 상품들의 리뷰
+	ShopFrame_ReviewProductDTO[] reviewSet(){ // DB에 있는 상품들의 리뷰
 		String pdName;
 		String user;
 		String userWrite;
 		String writeDate;
 		int starGrade;
-		for (int idx = 0; idx < shopDB.pdReviewDB.length; idx++) {
+		for(int idx = 0; idx < shopDB.pdReviewDB.length; idx++){
 			pdName = shopDB.pdReviewDB[idx][0];
 			user = shopDB.pdReviewDB[idx][1];
 			userWrite = shopDB.pdReviewDB[idx][2];

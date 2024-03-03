@@ -1,7 +1,6 @@
 package classes;
 
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class ShopFrame_DAO{	// 프로젝트 뼈대
 	UserAPI api = new UserAPI();
@@ -12,9 +11,9 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 	
 	/* 정보객체 생성----------------------------------------------------------------------------------/
 	/----------------------------------------단계별 메소드 생성*/
-	void printCategory() {
+	void printCategory(){
 		// 카테고리 화면
-		while(true) {
+		while(true){
 			System.out.printf("\t+%1$s+\n\t|\t카테고리\t|\n\t+%1$s+\n", api.mLineReturn('-', 23));
 			System.out.println("\t1.\t가구\n");// 카테고리 출력
 			System.out.println("\t2.\t가전디지털\n");// 카테고리 출력
@@ -36,7 +35,7 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 				System.out.println("\t^ 메뉴를 선택하세요");
 				continue;
 			}
-			if(categoryRead.length() > 0 && (Integer.parseInt(categoryRead) >= 1 && Integer.parseInt(categoryRead) <= 4)) {
+			if(categoryRead.length() > 0 && (Integer.parseInt(categoryRead) >= 1 && Integer.parseInt(categoryRead) <= 4)){
 				// 카테고리 상품메뉴로 이동
 				switch(Integer.parseInt(categoryRead)){
 					case 1:	// 가구
@@ -69,12 +68,12 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 		return 0;
 	}
 	void printProduct(String ctg, int ctgLen){	// ctg : 기본키, ctgLen : 카테고리당 상품 개수
-		while(true) {	// 카테고리별로 상품 출력
+		while(true){	// 카테고리별로 상품 출력
 			int cnt = 0;
 			int choice = pickProduct(ctg);
 			System.out.printf("\t+%1$s+\n\t|\t%2$-8s\t|\n\t+%1$s+\n", api.mLineReturn('-', 23), ctg); // 카테고리명 출력
-			for(int idx = 0; idx < set.productDTO.length; idx++) {
-				if(ctg.equals(set.productDTO[idx].getCategory())) { // 카테고리별로 상품을 출력하는 알고리즘
+			for(int idx = 0; idx < set.productDTO.length; idx++){
+				if(ctg.equals(set.productDTO[idx].getCategory())){ // 카테고리별로 상품을 출력하는 알고리즘
 					System.out.print(cnt+1+". ->");
 					System.out.printf("\t브랜드 : %s\n", set.productDTO[idx].getBrand());
 					System.out.printf("\t상품명 : %s\n", set.productDTO[idx].getProductName());
@@ -86,11 +85,11 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 			System.out.printf("\t%s\n", api.mLineReturn('-', 31));
 			System.out.print("\t\t상품을 선택하세요 [뒤로가기 : Q] : ");
 			String productRead = scan.nextLine();
-			if(productRead.length() == 0) {
+			if(productRead.length() == 0){
 				System.out.println("\t^ 메뉴를 선택하세요");
 				continue;
 			}
-			if(productRead.equalsIgnoreCase("Q")) {
+			if(productRead.equalsIgnoreCase("Q")){
 				System.out.println("\t← 카테고리 이동");
 				return;
 			}
@@ -98,12 +97,12 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 				System.out.println("\t^ 메뉴를 선택하세요");
 				continue;
 			}
-			if(Integer.parseInt(productRead) > ctgLen) {
+			if(Integer.parseInt(productRead) > ctgLen){
 				System.out.println("\t^ 상품을 선택할 수 없습니다.");
 				continue;
 			}
 			if(productRead.length() <= set.productDTO.length &&
-					(Integer.parseInt(productRead) >= 1 && Integer.parseInt(productRead) <= ctgLen)) {
+					(Integer.parseInt(productRead) >= 1 && Integer.parseInt(productRead) <= ctgLen)){
 				// 상품 선택시 상품에 대한 정보 출력과 메뉴창이 출력됨
 				System.out.println("\t↙상품 설명 이동");
 				productExplain(set.productDTO[choice + Integer.parseInt(productRead)-1]);	// 메소드로 이동 예정
@@ -127,11 +126,11 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 		while(true){
 			System.out.print("구매, 장바구니, 리뷰를 선택하세요 [뒤로가기 : Q] : ");
 			String explainRead = scan.nextLine();
-			if(explainRead.length() == 0) {
+			if(explainRead.length() == 0){
 				System.out.println("\t^ 메뉴를 선택하세요");
 				continue;
 			}
-			if(explainRead.equalsIgnoreCase("Q")) {
+			if(explainRead.equalsIgnoreCase("Q")){
 				System.out.println("\t← 상품 이동");
 				return;
 			}
@@ -139,8 +138,8 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 				System.out.println("\t^ 메뉴를 선택하세요");
 				continue;
 			}
-			if(Integer.parseInt(explainRead) >= 1 && Integer.parseInt(explainRead) <= 3) {
-				switch(Integer.parseInt(explainRead)) {
+			if(Integer.parseInt(explainRead) >= 1 && Integer.parseInt(explainRead) <= 3){
+				switch(Integer.parseInt(explainRead)){
 					case 1:
 						if(ShopFrame_Login.loginToken.equals("")){
 							System.out.println("로그인 후 구매가 가능합니다.");
@@ -165,8 +164,8 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 	void printReview(ShopFrame_ShopCategoryDTO productDTOobj){		// 상품의 리뷰출력 알고리즘
 		ShopFrame_ReviewProductDTO[] reviewDTO = set.reviewSet();
 		int flag = 0;
-		for (int idx =0;idx<reviewDTO.length ;idx++ )	{		
-			if (reviewDTO[idx].getPdName() == productDTOobj.getProductName()){			
+		for(int idx =0;idx<reviewDTO.length ;idx++ ){		
+			if(reviewDTO[idx].getPdName() == productDTOobj.getProductName()){			
 				api.mLineReturn('-', 30);			
 				System.out.println("               " + reviewDTO[idx].getPdName());
 				api.mLine('-', 30);			
@@ -178,11 +177,11 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 				flag=1;
 			}
 		}
-		if (flag == 1){
+		if(flag == 1){
 			System.out.println("리뷰 없음");
 		}
 	}	// productReview()
-	void showCart(String[] cart, String user) {
+	void showCart(String[] cart, String user){
 		System.out.printf("%s\n", api.mLineReturn('=', 40));
 		System.out.printf("\t%s의 장바구니\n", user);
 		System.out.printf("%s\n", api.mLineReturn('=', 40));
@@ -203,18 +202,8 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 			}
 		}
 	}
-	int getUserIdx(String user){	// 유저 카트 인덱스 추출기
-		int userIdx;
-		for(int i = 0; i < set.userDTO.length; i++){
-			if(user.equals(set.userDTO[i].getId())) {
-				userIdx = i;
-				return userIdx;
-			}
-		}
-		return 0;
-	}
 	void takeIt(ShopFrame_ShopCategoryDTO productObj){
-		int uIdx = getUserIdx(ShopFrame_Login.loginToken);
+		int uIdx = ShopFrame_Login.userToken;
 		String[] myCart = set.userDTO[uIdx].getCart();
 		int cIdx = 0;
 		for(int i = 0; i < myCart.length; i++){	// 널값인 인덱스 확인용
@@ -224,12 +213,11 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 			}
 		}
 		myCart[cIdx] = productObj.getProductName();
-		System.out.println(Arrays.toString(myCart));	// 장바구니 저장 테스트
 		System.out.println("장바구니에 상품이 담겼습니다.");
 		set.userDTO[uIdx].setCart(myCart);
 	}
 	void myCart(){
-		int uIdx = getUserIdx(ShopFrame_Login.loginToken);
+		int uIdx = ShopFrame_Login.userToken;
 		String[] myCart = set.userDTO[uIdx].getCart();
 		while(true){
 			showCart(myCart, ShopFrame_Login.loginToken);
@@ -239,7 +227,7 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 				System.out.println("\t^ 선택하세요");
 				continue;
 			}
-			if(cartRead.equalsIgnoreCase("Q")) {
+			if(cartRead.equalsIgnoreCase("Q")){
 				System.out.println("\t^ 메인메뉴 이동");
 				set.userDTO[uIdx].setCart(myCart); // 유저의 장바구니 정보 저장
 				return;
@@ -250,7 +238,7 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 			}
 		}
 	}
-	void mainMenu() { // 메인 메뉴
+	void mainMenu(){ // 메인 메뉴
 		api.mLine('-', 30);
 		System.out.println("1. 카테고리");
 		if(ShopFrame_Login.loginToken.equals("")){
@@ -266,21 +254,21 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 		api.mLine('-', 30);
 		System.out.print("메뉴를 선택하세요 [종료 : EXIT] : ");
 	}	// mainMenu()
-	void shopRun() { // 쇼핑몰 실행
+	void shopRun(){ // 쇼핑몰 실행
 		loginObj.shopUserInit();	// 프로그램 실행 시 유저 DB 초기화
 		set.itgProduct();	// 카테고리 상품 통합메소드 호출
 		set.productSet();	// 상품 갱신
 		set.userSet(shopDB.userDB); // 유저 정보 끌어오기
-		while(true) {
+		while(true){
 			String user = (ShopFrame_Login.loginToken.equals("")) ? "" : ShopFrame_Login.loginToken + "님 환영합니다.";
 			System.out.printf("%1$s\n\t쇼핑 플렉스몰\t\t%2$s\n%1$s\n", api.mLineReturn('=', 31), user);
 			mainMenu();
 			String choiceMenu = scan.nextLine();
-			if(choiceMenu.length() == 0) {
+			if(choiceMenu.length() == 0){
 				System.out.println("\t^ 메뉴를 선택하세요");
 				continue;
 			}
-			if(choiceMenu.equalsIgnoreCase("EXIT")) {
+			if(choiceMenu.equalsIgnoreCase("EXIT")){
 				System.out.println("시스템 종료합니다.");
 				System.exit(0);
 			}
@@ -288,8 +276,8 @@ public class ShopFrame_DAO{	// 프로젝트 뼈대
 				System.out.println("\t^ 메뉴를 선택하세요");
 				continue;
 			}
-			if(choiceMenu.length() == 1 && (choiceMenu.charAt(0) >= '1' && choiceMenu.charAt(0) <= '5')) {
-				switch(Integer.parseInt(choiceMenu)) {
+			if(choiceMenu.length() == 1 && (choiceMenu.charAt(0) >= '1' && choiceMenu.charAt(0) <= '5')){
+				switch(Integer.parseInt(choiceMenu)){
 					case 1:
 						printCategory();
 						break;
